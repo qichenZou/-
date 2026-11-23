@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>地图通 · 上海地图</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- 左侧功能面板 -->
+    <aside id="sidebar" class="sidebar">
+      <header class="brand">
+        <span class="brand-logo">地</span>
+        <div class="brand-text">
+          <h1>地图通</h1>
+          <p>上海 · 简体中文地图</p>
+        </div>
+        <button id="collapseBtn" class="icon-btn" title="收起面板" aria-label="收起面板">‹</button>
+      </header>
+
+      <div class="panel">
+        <div class="search-box">
+          <input id="searchInput" type="text" placeholder="搜索上海地点，如：外滩" autocomplete="off" />
+          <button id="searchBtn" class="primary-btn">搜索</button>
+        </div>
+        <ul id="searchResults" class="search-results" hidden></ul>
+      </div>
+
+      <div class="panel">
+        <h2 class="panel-title">底图</h2>
+        <div class="layer-list" id="layerList">
+          <label class="layer-item">
+            <input type="radio" name="basemap" value="vector" checked />
+            <span>标准地图</span>
+          </label>
+          <label class="layer-item">
+            <input type="radio" name="basemap" value="satellite" />
+            <span>卫星影像</span>
+          </label>
+          <label class="layer-item">
+            <input type="radio" name="basemap" value="satelliteLabel" />
+            <span>卫星路网</span>
+          </label>
+          <label class="layer-item">
+            <input type="radio" name="basemap" value="dark" />
+            <span>深色模式</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2 class="panel-title">工具</h2>
+        <div class="tool-grid">
+          <button id="locateBtn" class="tool-btn"><span class="ico">◎</span>定位</button>
+          <button id="measureBtn" class="tool-btn"><span class="ico">↔</span>测距</button>
+          <button id="labelBtn" class="tool-btn"><span class="ico">Aa</span>标注</button>
+          <button id="fullscreenBtn" class="tool-btn"><span class="ico">⛶</span>全屏</button>
+        </div>
+      </div>
+
+      <div class="panel panel-events">
+        <h2 class="panel-title">
+          上海 12 月活动
+          <span id="eventCount" class="count-badge">0</span>
+        </h2>
+        <div class="event-filter" id="eventFilter"></div>
+        <ul id="eventList" class="event-list"></ul>
+      </div>
+
+      <footer class="foot">活动数据：豆瓣 / 格瓦拉 / 携程 / 凤凰网 · 底图 © 高德地图</footer>
+    </aside>
+
+    <!-- 地图容器 -->
+    <main id="mapWrap">
+      <div id="map"></div>
+
+      <div id="coordsBar" class="coords-bar">
+        <span id="coordsText">经度 -- , 纬度 --</span>
+        <span class="divider"></span>
+        <span id="zoomText">缩放 5 级</span>
+      </div>
+
+      <div id="measureTip" class="measure-tip" hidden>
+        测距中：单击添加节点，双击结束并显示总距离。
+      </div>
+
+      <div id="labelTip" class="label-tip" hidden>
+        当前已隐藏活动标注文字，放大到 14 级以上即可显示。
+      </div>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="events.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
